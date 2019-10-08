@@ -1,0 +1,71 @@
+<div>
+    <div> <a
+      style="margin-left:5px"
+      mat-raised-button
+      color="warn"
+      routerLink="./new"
+      >Create New Meal</a
+    ></div>
+  <mat-card
+    style="margin: 5px;font-family:Arial, Helvetica, sans-serif!important;font-size:10px !important;"
+    class="mat-elevation-z15"
+    fxFlex
+  >
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8 meals_tbl"
+    >
+      <ng-container matColumnDef="id">
+        <th mat-header-cell fxFlex *matHeaderCellDef>Id.</th>
+        <td mat-cell *matCellDef="let element">M-{{ element.id }}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let element">{{ element.price }} gms</td>
+      </ng-container>
+
+      <ng-container matColumnDef="calories">
+        <th mat-header-cell *matHeaderCellDef>Calories</th>
+        <td mat-cell *matCellDef="let element">&euro; {{ element.calories }}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <a mat-raised-button color="primary" routerLink="./edit/{{element.id}}">Edit</a>
+
+          <a
+            style="margin-left:5px"
+            mat-raised-button
+            color="warn"
+            (click)="deleteMeals(element.id)"
+            >Delete</a
+          >
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <div style="padding-left:40%">
+      <mat-progress-spinner 
+      *ngIf="isLoading" 
+        color="primary" 
+        mode="indeterminate">
+      </mat-progress-spinner>
+   </div>
+   
+    <mat-paginator
+      [pageSizeOptions]="[ 10, 15, 20]"
+      showFirstLastButtons
+      
+    ></mat-paginator>
+  </mat-card>
+</div>

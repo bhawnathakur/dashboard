@@ -1,0 +1,98 @@
+<div class="row" >
+    <div class="col-md-10 offset-md-1">
+      <div class="container-fluid">
+          <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="ordernum">Order No. :</label>
+            <div class="input-group">
+                <input
+                type="text"
+                readonly
+                #orderNum="ngModel"
+                name="orderNum"
+                [(ngModel)]="order.orderNum"
+                class="form-control"
+              />
+            </div>
+            </div>
+            <div class="form-group">
+                <label for="type">Order Type. :</label>
+                <div class="input-group">
+                    <input
+                    type="text"
+                    
+                    #type="ngModel"
+                    name="type"
+                    [(ngModel)]="order.type"
+                    class="form-control"
+                  />
+                </div>
+                </div>
+
+            <div class="form-group">
+                <label for="name">Waitress :</label>
+                <select class="form-control"  
+                id="waitress" name="waitress" [(ngModel)]="waitressSelected"  #t  (change)="onWaitressChange(t.value)">
+                    <ng-container *ngFor="let waitress of waitresses;let i=index">
+                    
+                  <option [value]="i"  >{{waitress.name}}</option>
+                </ng-container>
+                </select>
+                </div>
+    
+           
+    
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="name">Grand Total :</label>
+          <div class="input-group mb-3">
+            
+              <div class="input-group-prepend">
+                <div class="input-group-text">&euro;</div>
+              </div>
+              <input
+              type="number"
+              readonly
+              #total="ngModel"
+              name="total"
+              [(ngModel)]="order.total"
+              class="form-control"
+            />
+          
+          </div>
+            
+          <div class="form-group" style="margin-top:3rem">
+            <div class="input-group">
+            <input
+              type="number"
+              readonly
+              #calories="ngModel"
+              name="total"
+              [(ngModel)]="order.total"
+              class="form-control"
+            />
+            <div class="input-group-prepend">
+                <div class="input-group-text">calories</div>
+              </div>
+            </div>
+             </div>
+       
+       
+
+             
+          <div class="form-group" style="margin-top:3rem">
+              <button [disabled]="buttonDisabled"  type="submit" class="btn btn-primary"><i class="fa fa-database"></i> Submit</button>
+            </div>
+          </div>
+         
+            </div>
+            
+      </div>
+      
+        
+      
+    
+        </form>

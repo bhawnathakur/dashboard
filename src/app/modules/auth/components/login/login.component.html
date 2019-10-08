@@ -1,0 +1,46 @@
+<div class="loginpage  ">
+  <div class="container" style="">
+    <div class="card card-login mx-auto ">
+      <div class="card-header">Login to Dashboard</div>
+      <div class="card-body">
+        <form (ngSubmit)="loginuser(form1)" #form1="ngForm">
+          <div class="form-group">
+              <label>Username</label>
+            <div class="form-label-group">
+              
+              <input
+                type="text"
+                name="username"
+                class="form-control"
+                placeholder="Username"
+                [(ngModel)]="mod.username"
+                required="required"
+                autofocus="autofocus"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+              <label>Password</label>
+            <div class="form-label-group">
+                
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                [(ngModel)]="mod.password"
+                name="password"
+                required="required"
+              />
+            </div>
+          </div>
+          
+          <div class="form-group">
+              <button  type="submit" class="btn btn-primary">Submit</button>
+           <span style="color:#FF0000;margin-left:15px;font-weight:bold" *ngIf="!loginbool">Invalid Credentials </span>
+           <span style="color:#FF0000;margin-left:15px;font-weight:bold" *ngIf="loginbool">{{mess}} </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

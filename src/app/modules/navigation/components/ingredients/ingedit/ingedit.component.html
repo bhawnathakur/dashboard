@@ -1,0 +1,74 @@
+<form (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <div class="row">
+    <div class="col-md-6 offset-md-1" style="margin-top: 2rem">
+      <div class="card">
+        <div class="card-header">Enter New Ingredient</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>Name :</label>
+            <input
+              id="name"
+              name="name"
+              #ing_name="ngModel"
+              [(ngModel)]="model.name"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label> Weight(gms)</label>
+            <input
+              id="weight"
+              name="weight"
+              #ing_wt="ngModel"
+              [(ngModel)]="model.weight"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label> Cost(&euro;) </label>
+            <input
+              id="cost"
+              name="cost"
+              #ing_wt="ngModel"
+              [(ngModel)]="model.cost"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label> Calories </label>
+            <input
+              id="cals"
+              name="cals"
+              #ing_wt="ngModel"
+              [(ngModel)]="model.cals"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">
+              Submit
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-warning"
+              style="margin-left:10px"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <a
+        mat-raised-button
+        color="warn"
+        style="margin-top: 2rem"
+        routerLink="/home/ingredients"
+        >Go Back</a
+      >
+    </div>
+  </div>
+</form>
