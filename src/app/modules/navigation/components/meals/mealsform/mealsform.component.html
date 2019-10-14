@@ -2,6 +2,15 @@
 <div class="col-md-10 offset-md-1">
   <div class="container-fluid">
       <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+          <div class="row">
+              <div> <a
+                  style="margin-left:5px"
+                  mat-raised-button
+                  color="warn"
+                  routerLink="/home/meals"
+                  >Go Back</a
+                ></div>
+      </div>
     <div class="row">
 <div class="col-md-6">
     <div class="form-group">
@@ -23,7 +32,7 @@
             type="text"
             #totcals="ngModel"
             name="totcals"
-            
+            readonly
             [(ngModel)]="model.totcals"
             class="form-control"
           />
@@ -72,10 +81,10 @@
         <th>Name</th>
         <th>Weight</th>
         <th>Calories</th>
-        <th></th>
+        
         <th>
           <a  (click)="AddIngredient()" class="btn btn-sm btn-success text-white"><i class="fa fa-plus"></i>
-            Add Item</a>
+            Add Ingredient</a>
         </th>
         
           </thead>
@@ -90,7 +99,7 @@
           <td>{{item.name}}</td>
           <td>{{item.weight}}</td>
           <td>{{item.calories}}</td>
-          <td><a (click)="editMeals(i)" class="btn btn-sm btn-info text-white"><i class="fa fa-pen"></i>
+          <td><a (click)="editMeals(i,item.id)" class="btn btn-sm btn-info text-white"><i class="fa fa-pen"></i>
             </a></td>
              <td><a (click)="deleteMeals(i)" class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i>
             </a></td>

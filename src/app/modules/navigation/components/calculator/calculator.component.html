@@ -1,0 +1,102 @@
+<div class="row">
+    <div style="padding-left:40%; position: fixed;
+    top:200px;
+    left: 100px;
+    z-index:100;
+    ">
+        <mat-progress-spinner
+        *ngIf="isLoading" 
+        color="primary" 
+        mode="indeterminate"> </mat-progress-spinner>
+      </div>
+      </div>
+<div class="row" >
+        <div class="col-md-10 offset-md-1">
+          <div class="container-fluid">
+              <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+            <div class="row">
+        <div class="col-md-6">
+                <div class="form-group">
+                        <label for="sel1">Select Meal:</label>
+                    <select class="form-control" id="sel1" #t  [(ngModel)]="selectedmealindex" (change)=onItemChange(t.value) name="str">
+                  
+                <ng-container *ngFor="let meal of meals; let i = index">
+                  <option [value]="i">{{ meal.name }}</option>
+                </ng-container>
+              </select>
+                </div>
+                
+                <div class="form-group">
+                   
+                    
+                     <h3 style="color:#FF5733"> {{totcals*num}} Calories</h3>
+                    
+                    </div>
+        
+                    <div class="form-group">
+                           
+                            
+                              
+                     <h3 style="color:#FF5733">&euro; {{totprice*num}} </h3>
+                            
+                            </div>
+        
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="name">Number :</label>
+              <div class="input-group mb-3">
+                
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">&euro;</div>
+                  </div>
+                  <input
+                  type="number"
+                  #numtext="ngModel"
+                  name="num"
+                  [(ngModel)]="num"
+                  class="form-control"
+                />
+              
+              </div>
+                
+         
+              </div>
+            
+                </div>
+                
+          </div>
+          
+            
+          
+        
+            </form>
+    
+            <div class="row">
+                <table class="table table-borderless">
+                  <thead class="thead-light">
+                <th>Name</th>
+                <th>Weight</th>
+                <th>Calories</th>
+                
+                
+                  </thead>
+                <tbody>
+                 
+               <tr *ngFor="let ingredient of ingredients;let i=index">
+                  <td>{{ingredient.name}}</td>
+                  <td>{{ingredient.wt*num}}</td>
+                  <td>{{(ingredient.cals* ingredient.wt/ingredient.weight | number:'1.0-0')}} gms</td>
+                  
+                </tr>
+           
+                </tbody>
+                
+                </table>
+                
+                </div>
+          </div>
+        
+        </div>
+        </div>
+    

@@ -2,12 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { Meal } from "../meals.model";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import {
-  MatDialog,
-  MatDialogConfig,
-  MatDialogRef,
-  MAT_DIALOG_DATA
-} from "@angular/material";
+import { MatDialog, MatDialogConfig } from "@angular/material";
 import { AddmealsingComponent } from "../addmealsing/addmealsing.component";
 import { MealsService } from "../../../../../services/meals.service";
 export class Item {
@@ -22,7 +17,8 @@ export class MealsformComponent implements OnInit {
   model: any = new Meal(null, null, null, null);
   items: any = [];
   isNew: boolean = true;
-  edit;
+  somenum: number = 0;
+
   buttonDisabled: boolean = true;
   present_id: number;
   total_calories: number = 0;
@@ -47,7 +43,7 @@ export class MealsformComponent implements OnInit {
     );
     console.log(this.items);
     this.service.addMeals(this.model).subscribe(data => {
-      console.log(data);
+      console.log(this.model);
       this.openSnackBar();
       this.model = new Meal(null, null, 0, null);
       this.items = [];
@@ -66,7 +62,7 @@ export class MealsformComponent implements OnInit {
     dialogconfig.width = "70%";
     dialogconfig.data = {
       isNew: true,
-      
+      val: 0
     };
     dialogconfig.position = {
       top: "0"
@@ -100,14 +96,19 @@ export class MealsformComponent implements OnInit {
     }
   }
   //edit meals
-  editMeals(e) {
+  editMeals(e, f) {
+    console.log(f);
     const dialogconfig = new MatDialogConfig();
     dialogconfig.autoFocus = true;
     dialogconfig.disableClose = true;
     dialogconfig.width = "70%";
-    let arr: any = [{ isNew: false, val:  e  }];
-
-    dialogconfig.data = arr.concat(this.items[e]);
+    this.somenum = Math.round(e);
+    console.log(this.somenum);
+    dialogconfig.data = {
+      isNew: false,
+      val: e,
+      val1: f
+    };
 
     dialogconfig.position = {
       top: "0"

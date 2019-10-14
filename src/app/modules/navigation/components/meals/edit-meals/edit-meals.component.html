@@ -1,109 +1,97 @@
-<div class="row" >
-    <div class="col-md-10 offset-md-1">
-      <div class="container-fluid">
-          <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+<div class="row">
+  <div class="col-md-10 offset-md-1">
+    <div class="container-fluid">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="name">Name :</label>
-            <div class="input-group">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="name">Name :</label>
+              <div class="input-group">
                 <input
-                type="text"
-                #name="ngModel"
-                name="name"
-                [(ngModel)]="model.name"
-                class="form-control"
-              />
-            </div>
+                  type="text"
+                  #name="ngModel"
+                  name="name"
+                  [(ngModel)]="model.name"
+                  class="form-control"
+                />
+              </div>
             </div>
             <div class="form-group">
-                <label for="name">Total Calories :</label>
-                <div class="input-group">
-                   <input
-                type="text"
-                #calories="ngModel"
-                name="calories"
-                
-                [(ngModel)]="model.calories"
-                class="form-control"
-              />
-                </div>
-                </div>
-    
-           
-    
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="name">Price :</label>
-          <div class="input-group mb-3">
-            
-              <div class="input-group-prepend">
-                <div class="input-group-text">&euro;</div>
+              <label for="name">Total Calories :</label>
+              <div class="input-group">
+                <input
+                  type="text"
+                  #totcals="ngModel"
+                  name="totcals"
+                  readonly
+                  [(ngModel)]="model.totcals"
+                  class="form-control"
+                />
               </div>
-              <input
-              type="number"
-              #price="ngModel"
-              name="price"
-              [(ngModel)]="model.price"
-              class="form-control"
-            />
-          
-          </div>
-            
-          
-          <div class="form-group" style="margin-top:3rem">
-              <button [disabled]="buttonDisabled"  type="submit" class="btn btn-primary"><i class="fa fa-database"></i> Submit</button>
             </div>
           </div>
-         
-            </div>
-            
-      </div>
-      
-        
-      
-    
-        </form>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="name">Price :</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">&euro;</div>
+                </div>
+                <input
+                  type="number"
+                  #price="ngModel"
+                  name="price"
+                  [(ngModel)]="model.price"
+                  class="form-control"
+                />
+              </div>
 
-        <div class="row">
-            <table class="table table-borderless">
-              <thead class="thead-light">
+              <div class="form-group" style="margin-top:3rem">
+                <button
+                  [disabled]="buttonDisabled"
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  <i class="fa fa-database"></i> Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="row">
+        <table class="table table-borderless">
+          <thead class="thead-light">
             <th>Name</th>
             <th>Weight</th>
             <th>Calories</th>
-            <th></th>
             <th>
-              <a  (click)="AddOrEdit()" class="btn btn-sm btn-success text-white"><i class="fa fa-plus"></i>
-                Add Item</a>
+              <a  (click)="AddIngredient()" class="btn btn-sm btn-success text-white"><i class="fa fa-plus"></i>
+                Add Ingredient</a>
             </th>
-            
-              </thead>
-            <tbody>
-              <tr *ngIf="items.length==0" >
-                 <td class="font-italic text-center" colspan="5">
-                    No Ingredient selected for this Meal
-    
-                 </td>
-              </tr>
-            <tr *ngFor="let item of ingredients;let i=index">
-              <td>{{item.name}}</td>
-              <td>{{item.weight}}</td>
-              <td>{{item.cals}}</td>
-              <td><a (click)="editMeals(i)" class="btn btn-sm btn-info text-white"><i class="fa fa-pen"></i>
-                </a></td>
-                 <td><a (click)="deleteMeals(i)" class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i>
-                </a></td>
+          
+          </thead>
+          <tbody>
+            <tr *ngIf="items.length == 0">
+              <td class="font-italic text-center" colspan="5">
+                No Ingredient selected for this Meal
+              </td>
             </tr>
-            </tbody>
-            
-            </table>
-            
-            </div>
+            <tr *ngFor="let item of items; let i = index">
+              <td>{{ item.name }}</td>
+              <td>{{ item.weight }}</td>
+              <td>{{ item.calories }}</td>
+              <td>
+                <a (click)="editMeals(i,item.id)" class="btn btn-sm btn-info text-white"
+                  ><i class="fa fa-pen"></i>
+                </a>
+              </td>
+              
+            </tr>
+          </tbody>
+        </table>
       </div>
-    
     </div>
-    </div>
-    
-
-    
+  </div>
+</div>

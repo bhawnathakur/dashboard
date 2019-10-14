@@ -2,21 +2,25 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Ingredient } from "../modules/navigation/models/ingredient";
+import {ConstantsService} from './constants.service' ;
 @Injectable({
   providedIn: "root"
 })
 export class IngredientService {
   formIngredient: Ingredient;
-  constructor(private httpclient: HttpClient) {}
-  url = "http://localhost";
+  constructor(private httpclient: HttpClient,private service:ConstantsService) {
+    this.url=this.service.url;
+  }
+  url : string;
   getIngredients(): Observable<Ingredient[]> {
+    
     return this.httpclient.get<Ingredient[]>(
-      this.url + "/api/ingredients/getIngredients.php"
+      this.url + "ingredients/getIngredients.php"
     );
   }
   getIngredient(id) {
     return this.httpclient.post(
-      this.url + "/api/ingredients/getSingleIngredient.php",
+      this.url + "ingredients/getSingleIngredient.php",
       {
         id: id
       }
@@ -24,14 +28,14 @@ export class IngredientService {
   }
   updateIngredient(info) {
     return this.httpclient.post(
-      this.url + "/api/ingredients/updateIngredient.php",
+      this.url + "ingredients/updateIngredient.php",
       info
     );
   }
 
   deleteIngredient(id) {
     return this.httpclient.post(
-      this.url + "/api/ingredients/deleteIngredient.php",
+      this.url + "ingredients/deleteIngredient.php",
       {
         id: id
       }
@@ -39,7 +43,7 @@ export class IngredientService {
   }
   addIngredient(info) {
     return this.httpclient.post(
-      this.url + "/api/ingredients/addIngredient.php",
+      this.url + "ingredients/addIngredient.php",
       info
     );
   }

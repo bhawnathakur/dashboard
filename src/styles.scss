@@ -42,7 +42,7 @@ table.table-hover tbody tr:hover {
   height: 50px;
   text-align: center;
   color: #fff;
-  background: rgba(52, 58, 64, 0.5);
+  background: rgba(94, 130, 167, 0.5);
   line-height: 46px;
 }
 
@@ -124,7 +124,7 @@ a{
 
 .sidebar {
   width: 90px !important;
-  background-color: #212529;
+  background-color: #06213b;
   min-height: calc(100vh - 56px);
   padding-top: 2rem;
 }
@@ -178,7 +178,7 @@ a{
 
 @media (min-width: 768px) {
   .sidebar {
-    width: 225px !important;
+    width: 135px !important;
   }
   .sidebar .nav-item .nav-link {
     display: block;

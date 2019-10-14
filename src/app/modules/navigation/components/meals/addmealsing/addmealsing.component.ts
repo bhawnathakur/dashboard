@@ -22,27 +22,33 @@ export class AddmealsingComponent implements OnInit {
   name: string;
   weight: any = 100;
   caloriesratio: string;
-  isNew: boolean;
+  isNew: boolean = false;
+  val: any;
+  val1: any;
   constructor(
     private service: IngredientService,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<AddmealsingComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
-    this.isNew = data.isNew;
-    console.log(data.name);
+    this.selectind = 4;
     if (data.val) {
       this.selectind = data.val;
+      console.log(this.selectind);
     } else {
       this.selectind = 0;
     }
-
-    console.log(data.val);
+    if (data.val1) {
+      this.val1 = data.val1;
+      console.log(this.val1);
+    } else {
+      this.isNew = false;
+    }
   }
 
   ngOnInit() {
+    this.isNew = false;
     this.service.getIngredients().subscribe(data => {
-      console.log(data);
       this.items = data;
 
       this.ingredients_id = this.items[0].id;
@@ -51,6 +57,17 @@ export class AddmealsingComponent implements OnInit {
       this.totcal = (this.weight * this.calories) / this.wt;
       this.name = this.items[this.selectind].name;
       console.log(this.name);
+      if (this.val1) {
+        this.isNew = true;
+        console.log(this.val1);
+        for (let i = 0; i < this.items.length; i++) {
+          console.log(this.items[i].id);
+          if (this.val1 == this.items[i].id) {
+            this.selectind = i;
+            console.log(this.val1);
+          }
+        }
+      }
     });
   }
   onItemChange(e) {

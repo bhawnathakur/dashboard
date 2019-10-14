@@ -1,1 +1,195 @@
-<p>orderedit works!</p>
+<div class="row">
+    <div style="padding-left:40%; position: fixed;
+    top:200px;
+    left: 100px;
+    z-index:100;
+    ">
+        <mat-progress-spinner
+        *ngIf="isLoading" 
+        color="primary" 
+        mode="indeterminate"> </mat-progress-spinner>
+      </div>
+    <div class="col-md-10 offset-md-1">
+      <div class="container-fluid">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="ordernum">Order No. :</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    readonly
+                    #orderNum="ngModel"
+                    name="orderNum"
+                    [(ngModel)]="order.orderNum"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="type">Order Type. :</label>
+                <select
+                  class="form-control"
+                  [(ngModel)]="typeSelected"
+                  id="type"
+                  name="type"
+                    #type
+                    (change)="onTypeChange(type.value)"
+                >
+                  <option *ngFor="let type of types; let i = index" [value]="i">
+                    {{ type.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="name">Waitress :</label>
+                <select
+                  class="form-control"
+                  [(ngModel)]="waitressSelected"
+                  id="waitress"
+                  name="waitress"
+                  #t  
+                  (change)="onWaitressChange(t.value)">
+                
+                  <option
+                    *ngFor="let waitress of waitresses; let j = index"
+                    [value]="j"
+                  >
+                    {{ waitress.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="" style="margin-top:0.3rem;margin-bottom:0.3rem">
+                <button class="btn btn-primary" type="submit" >Submit</button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Grand Total :</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      &euro;
+                    </div>
+                  </div>
+                  <input
+                    type="number"
+                    readonly
+                    #total="ngModel"
+                    name="total"
+                    [(ngModel)]="order.total"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group" style="margin-top:3rem">
+                  <div class="input-group">
+                   
+                <input
+                type="number"
+                readonly
+                #calories="ngModel"
+                name="calories"
+                [(ngModel)]="order.calories"
+                class="form-control"
+              />
+  
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        calories
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" style="margin-top:3rem">
+                  <div class="input-group">
+                    <input
+                      class="form-control"
+                      name="avatar"
+                      #avatar
+                      style="display:none"
+                      (change)="onSelectedFile($event)"
+                      type="file"
+                      value="avatar"
+                    />
+                  </div>
+                 
+                  <button
+                    class="btn btn-info"
+                    (click)="avatar.click()"
+                    type="button"
+                  >
+                    Select Image
+                  </button>
+                  <button
+                    class="btn btn-warning"
+                    style="margin-left:20px"
+                    type="button"
+                    (click)="onFileUpload()"
+                  >
+                    Upload
+                  </button>
+                </div>
+                <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar
+                >{{ progressMessage }}
+              </div>
+            </div>
+          </div>
+        </form>
+  
+        <div class="row">
+          <table class="table table-borderless tbl-head">
+            <thead class="thead-blue">
+          <th>Name</th>
+           <th>Number</th>
+          <th>Price</th>
+         
+          <th>Calories</th>
+          
+          <th>
+            <a  (click)="AddMeals()" class="btn btn-sm btn-success text-white"><i class="fa fa-plus"></i>
+              Add Meals</a>
+          </th>
+          
+            </thead>
+          <tbody>
+            <tr *ngIf="meals.length==0" >
+               <td class="font-italic text-center" colspan="5">
+                  No Ingredient selected for this Meal
+                 
+               </td>
+            </tr>
+          <tr *ngFor="let meal of meals;let i=index">
+            <td>{{meal.name}}</td>
+            <td>         <input
+              type="number"
+              
+              #num="ngModel"
+              name="num"
+              [(ngModel)]="meal.num"
+              (keyup)="onChangeMeal()"
+              class="form-control num"
+            /></td>
+            <td>{{meal.price*meal.num}}</td>
+            
+            <td>{{meal.calories*meal.num}}</td>
+            
+               <td><a (click)="deleteMeals(i)"  class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i>
+              </a></td>
+          </tr>
+          </tbody>
+          
+          </table>
+          
+          </div>
+  
+  
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  

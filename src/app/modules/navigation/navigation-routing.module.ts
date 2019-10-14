@@ -19,15 +19,16 @@ import { EmpeditComponent } from "./components/employees/empedit/empedit.compone
 import { IngeditComponent } from "./components/ingredients/ingedit/ingedit.component";
 
 import { MealsformComponent } from "./components/meals/mealsform/mealsform.component";
-import { MealsListComponent } from './components/meals/meals-list/meals-list.component';
-import { EditMealsComponent } from './components/meals/edit-meals/edit-meals.component';
+import { MealsListComponent } from "./components/meals/meals-list/meals-list.component";
+import { EditMealsComponent } from "./components/meals/edit-meals/edit-meals.component";
+import { CalculatorComponent } from "./components/calculator/calculator.component";
 const routes: Routes = [
   {
     path: "",
     component: NavComponent,
     children: [
       {
-        path: "orders",
+        path: "",
         component: OrdersComponent,
 
         children: [
@@ -40,13 +41,13 @@ const routes: Routes = [
             component: OrderformComponent
           },
           {
-            path: "edit",
+            path: "edit/:id",
             component: OrdereditComponent
           }
         ]
       },
       {
-        path: "",
+        path: "employees",
         component: EmployeesComponent,
         children: [
           {
@@ -74,20 +75,20 @@ const routes: Routes = [
           },
           {
             path: "",
-            component : MealsListComponent
+            component: MealsListComponent
           },
           {
             path: "edit/:id",
-            component:EditMealsComponent
+            component: EditMealsComponent
           }
         ]
       },
 
       {
-        path: "supplies",
-        component: SuppliesComponent
+        path: "calculator",
+        component: CalculatorComponent
       },
-     
+
       {
         path: "ingredients",
         component: IngredientHomeComponent,

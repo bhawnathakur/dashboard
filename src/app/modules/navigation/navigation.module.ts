@@ -37,10 +37,14 @@ import { MealsformComponent } from "./components/meals/mealsform/mealsform.compo
 import { AddmealsingComponent } from "./components/meals/addmealsing/addmealsing.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { MealsListComponent } from './components/meals/meals-list/meals-list.component';
-import { EditMealsComponent } from './components/meals/edit-meals/edit-meals.component';
+import { MealsListComponent } from "./components/meals/meals-list/meals-list.component";
+import { EditMealsComponent } from "./components/meals/edit-meals/edit-meals.component";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { OrderDialogComponent } from "./components/orders/order-dialog/order-dialog.component";
+import { CalculatorComponent } from './components/calculator/calculator.component';
+
 @NgModule({
-  entryComponents: [AddmealsingComponent],
+  entryComponents: [AddmealsingComponent, OrderDialogComponent],
   declarations: [
     NavComponent,
     EmployeesComponent,
@@ -63,7 +67,9 @@ import { EditMealsComponent } from './components/meals/edit-meals/edit-meals.com
     MealsformComponent,
     AddmealsingComponent,
     MealsListComponent,
-    EditMealsComponent
+    EditMealsComponent,
+    OrderDialogComponent,
+    CalculatorComponent
   ],
   imports: [
     CommonModule,
@@ -84,8 +90,8 @@ import { EditMealsComponent } from './components/meals/edit-meals/edit-meals.com
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
-  ],
-  
+    MatSnackBarModule,
+    MatProgressBarModule
+  ]
 })
 export class NavigationModule {}

@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
 import { ComService } from "./services/com.service";
 import { OrderService } from "./services/order.service";
+import {FileUploadService} from "./services/file-upload.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { AuthService } from "./services/auth.service";
@@ -15,7 +16,9 @@ import { Auth1Guard } from "./auth1.guard";
 import { IngredientService } from "./services/ingredient.service";
 import { EmployeeService } from "./services/employee.service";
 import { MealsService } from "./services/meals.service";
+import { ConstantsService } from "./services/constants.service";
 import { MatDialogModule } from "@angular/material";
+import {DatePipe} from '@angular/common';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -37,7 +40,10 @@ import { MatDialogModule } from "@angular/material";
     EmployeeService,
     Auth1Guard,
     AuthGuard,
-    MealsService
+    MealsService,
+    FileUploadService,
+    ConstantsService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

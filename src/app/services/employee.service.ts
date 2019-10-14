@@ -2,20 +2,23 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Employee } from "../modules/navigation/models/employee.model";
+import {ConstantsService} from './constants.service' ;
 @Injectable({
   providedIn: "root"
 })
 export class EmployeeService {
-  constructor(private httpclient: HttpClient) {}
-  url: string = "http://localhost";
+  constructor(private httpclient: HttpClient,private service:ConstantsService) {}
+  url: string ;
   getEmployees(): Observable<Employee[]> {
+    this.url = this.service.url;
     return this.httpclient.get<Employee[]>(
-      this.url + "/api/employees/getEmployees.php"
+      
+      this.url + "employees/getEmployees.php"
     );
   }
   getEmployee(id) {
     return this.httpclient.post(
-      this.url + "/api/employees/getSingleEmployee.php",
+      this.url + "employees/getSingleEmployee.php",
       {
         id: id
       }
@@ -23,14 +26,14 @@ export class EmployeeService {
   }
   updateEmployee(info) {
     return this.httpclient.post(
-      this.url + "/api/employees/updateEmployees.php",
+      this.url + "employees/updateEmployees.php",
       info
     );
   }
 
   deleteEmployee(id) {
     return this.httpclient.post(
-      this.url + "/api/employees/deleteEmployee.php",
+      this.url + "employees/deleteEmployee.php",
       {
         id: id
       }
@@ -38,7 +41,7 @@ export class EmployeeService {
   }
   addEmployee(info) {
     return this.httpclient.post(
-      this.url + "/api/employees/addEmployee.php",
+      this.url + "employees/addEmployee.php",
       info
     );
   }
